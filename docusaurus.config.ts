@@ -18,6 +18,20 @@ const config: Config = {
         defaultLocale: 'en',
         locales: ['en']
     },
+    markdown: {
+        mermaid: true
+    },
+    themes: ['@docusaurus/theme-mermaid'],
+
+    headTags: [
+        {
+            tagName: 'meta',
+            attributes: {
+                name: 'theme-color',
+                content: '#242c38'
+            }
+        }
+    ],
 
     presets: [
         [

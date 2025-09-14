@@ -207,8 +207,10 @@ Features:
 - UFW setup for access management
 - BBR optimization for TCP connections
 
-<div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
+<div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
   <Button label="Github repository" link="https://github.com/eGamesAPI/remnawave-reverse-proxy" variant="secondary" size="md" outline />
+  <Button label="Documentation" link="https://wiki.egam.es" variant="secondary" size="md" outline />
+  <Button label="Telegram Chat" link="https://t.me/+G8GtPf9dW9FlMWVi" variant="secondary" size="md" outline />
 </div>
 <br />
 
@@ -414,9 +416,10 @@ A Telegram bot for selling subscriptions with integration to Remnawave. This ser
 
 Author: [jolymmiles](https://github.com/Jolymmiles)
 
-<div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
+<div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
   <Button label="Github repository" link="https://github.com/Jolymmiels/remnawave-telegram-shop" variant="secondary" size="md" outline />
   <Button label="Documentation" link="https://github.com/Jolymmiels/remnawave-telegram-shop/wiki" variant="secondary" size="md" outline />
+  <Button label="Telegram Chat" link="https://t.me/remnawavetelegramshop" variant="secondary" size="md" outline />
 </div>
 <br />
 
@@ -517,11 +520,12 @@ The script backups and restores only the entire database, as well as the .env an
 
 ---
 
-### WARP Native Installer by distillium
+### WARP Native Installer
 
 This script installs Cloudflare WARP in “native” mode via `WireGuard`, without using `warp-cli`.
 
-**Author:** [distillium](https://github.com/distillium)
+**Script Author:** [distillium](https://github.com/distillium) <br />
+**Ansible Role Author:** [TheMelbine](https://github.com/TheMelbine)
 
 It automates:
 - Installing the necessary packages (`wireguard`, `resolvconf`)
@@ -530,11 +534,40 @@ It automates:
 - Connecting and checking status
 - Enabling autorun of the `warp` interface
 
-**Installing (performed on each desired node):**
-
+**Installing:** <br />
+**Option 1: Shell Script (performed on each desired node):**
 ```bash
-curl -sL https://raw.githubusercontent.com/distillium/warp-native/main/install.sh | bash
+bash <(curl -fsSL https://raw.githubusercontent.com/distillium/warp-native/main/install.sh)
 ```
+
+<div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
+  <Button label="Shell Script Github Repository" link="https://github.com/distillium/warp-native" variant="secondary" size="md" outline />
+</div>
+<br />
+
+**Option 2: Ansible Role (Recommended for automation)**
+```bash
+ansible-galaxy install themelbine.warp_native
+```
+
+<details>
+  <summary>📝 Show example playbook</summary>
+  
+```yaml
+- hosts: warp_servers
+  become: yes
+  roles:
+    - themelbine.warp_native
+  vars:
+    warp_native_state: present
+    warp_native_modify_resolv: true
+```
+</details>
+
+<div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
+  <Button label="Ansible Role Github Repository" link="https://github.com/TheMelbine/ansible-role-warp-native" variant="secondary" size="md" outline />
+</div>
+<br /><br />
 
 **Templates for Xray configuration**
 <details>
@@ -574,6 +607,7 @@ curl -sL https://raw.githubusercontent.com/distillium/warp-native/main/install.s
 }
 ```
 </details>
+<br />
 
 **Interface management**
 <details>
@@ -589,19 +623,46 @@ curl -sL https://raw.githubusercontent.com/distillium/warp-native/main/install.s
 | Disable autorun        | `systemctl disable wg-quick@warp`      |
 | Enable autorun         | `systemctl enable wg-quick@warp`       |
 </details>
+<br />
 
-**Deleting:**
+**Uninstall:** <br />
+**Shell Script Method:**
 ```bash
-curl -sL https://raw.githubusercontent.com/distillium/warp-native/main/uninstall.sh | bash
+bash <(curl -fsSL https://raw.githubusercontent.com/distillium/warp-native/main/uninstall.sh)
 ```
+**Ansible Role Method:**
+<details>
+  <summary>📝 Show</summary>
+```yaml
+- hosts: warp_servers
+  become: yes
+  roles:
+    - themelbine.warp_native
+  vars:
+    warp_native_state: absent
+```
+</details>
 
-<div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
-  <Button label="Github repository" link="https://github.com/distillium/warp-native" variant="secondary" size="md" outline />
+<div style={{ display: 'flex', justifyContent: 'center' }}>
+  <img src="/awesome/warp-native.webp" alt="warp-native" width="600" />
+</div>
+
+---
+
+### Remnawave TG Shop
+
+A Telegram bot for selling and managing Remnawave subscriptions. It supports user registration, trial periods, promo codes, referral programs, subscription management. Payments are accepted through YooKassa | CryptoPay | Telegram Stars | Tribute. Admins get access to a secure panel with statistics, user management, promo code creation, broadcast messaging and other functions
+
+Author: [machka pasla](https://github.com/machka-pasla)
+
+<div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+  <Button label="Github repository" link="https://github.com/machka-pasla/remnawave-tg-shop" variant="secondary" size="md" outline />
+  <Button label="Telegram Chat" link="https://t.me/remnawave_tg_shop" variant="secondary" size="md" outline />
 </div>
 <br />
 
 <div style={{ display: 'flex', justifyContent: 'center' }}>
-  <img src="/awesome/warp-native.webp" alt="warp-native" width="600" />
+  <img src="/awesome/remnawave-tg-shop.webp" alt="Remnawave TG Shop" width="600" />
 </div>
 
 ---

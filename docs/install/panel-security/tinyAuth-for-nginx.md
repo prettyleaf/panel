@@ -8,7 +8,7 @@ TinyAuth is the simplest way to protect your apps with a login screen
 
 ## Installation
 
-Now it's time to create our docker compose file which can be as simple as this:
+Now it's time to add TinyAuth to your existing docker-compose.yml file or create a new one. If creating a new file, don't forget to add the `services:` section. The configuration can be as simple as this:
 
 ```yaml title="docker-compose.yml"
 tinyauth:
@@ -89,8 +89,6 @@ server {
     location / {
         proxy_pass http://tinyauth;
         proxy_set_header Host $host;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection $connection_upgrade;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
@@ -117,8 +115,6 @@ server {
         proxy_http_version 1.1;
         proxy_pass http://remnawave;
         proxy_set_header Host $host;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection $connection_upgrade;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
